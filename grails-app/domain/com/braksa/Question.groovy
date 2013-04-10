@@ -6,7 +6,7 @@ class Question {
     Date dateCreated
     Date lastUpdated
 
-    static hasMany = [answers : Answer]
+    static hasMany = [answers : Answer, upvotes: Upvote]
     static belongsTo = [User, Community]
     static fetchMode = [answers: 'eager']
 

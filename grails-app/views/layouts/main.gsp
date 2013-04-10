@@ -34,38 +34,42 @@
     			<ul class="nav ">
       				<li><g:link controller="pages" action="index" >Accueil</g:link></li>
       				<g:if test="${session?.user != null }">
-      					<li><g:link controller="user" action="show" id="${session?.user?.id }" >Mon Profil</g:link></li>
-      				</g:if>
+                          <li><g:link controller="user" action="show" id="${session?.user?.id }" >Profil</g:link></li>
+                          <li><g:link controller="pages" action="index" id="${session?.user?.id }" >Communautés</g:link></li>
+                      </g:if>
       				<g:else>
       					<li><g:link controller="user" action="create" >S'inscrire</g:link></li>
       				</g:else>
 
-      				<g:if test="${session?.user?.role == 'admin' }">
-                          <li>
-                              <a href="#">
-                                  Administration <b class="caret"></b>
-                                  <span class="navbar-unread">1</span>
-                              </a>
-                              <ul>
-                                  <li>
-                                      <a href="#">Utilisateurs</a>
-                                      <ul>
-                                          <li><g:link controller="user" action="list" >Liste des utilisateurs</g:link></li>
-                                      </ul> <!-- /Sub menu -->
-                                  </li>
-                                  <li>
-                                      <a href="#">Communauté</a>
-                                      <ul>
-                                          <li><g:link controller="community" action="create" >Nouvelle Communauté</g:link></li>
-                                          <li><g:link controller="community" action="list" >Liste des Communautés</g:link></li>
-                                      </ul> <!-- /Sub menu -->
-                                  </li>
-                              </ul> <!-- /Sub menu -->
-                          </li>
-                    </g:if>
-      				
-      				<li><g:loginControl/></li>
     			</ul>
+                <ul class="nav pull-right">
+                    <g:if test="${session?.user?.role == 'admin' }">
+                        <li>
+                            <a href="#">
+                                Administration <b class="caret"></b>
+                                <span class="navbar-unread">1</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="#">Utilisateurs</a>
+                                    <ul>
+                                        <li><g:link controller="user" action="list" >Liste des utilisateurs</g:link></li>
+                                    </ul> <!-- /Sub menu -->
+                                </li>
+                                <li>
+                                    <a href="#">Communauté</a>
+                                    <ul>
+                                        <li><g:link controller="community" action="create" >Nouvelle Communauté</g:link></li>
+                                        <li><g:link controller="community" action="list" >Liste des Communautés</g:link></li>
+                                    </ul> <!-- /Sub menu -->
+                                </li>
+                            </ul> <!-- /Sub menu -->
+                        </li>
+                    </g:if>
+
+                    <li><g:loginControl/></li>
+                </ul>
+
   			</div>
 		</div>
 		

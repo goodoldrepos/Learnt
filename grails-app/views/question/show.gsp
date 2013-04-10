@@ -13,7 +13,6 @@
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
 	</head>
 	<body>
-            ${Community.findByQuestion(questionInstance.id).get().id}
 
             <g:if test="${session?.user?.role == 'admin' || (User.findByQuestion(questionInstance.id).list().size() != 0 && User.findByQuestion(questionInstance.id).list().get(0).id == session?.user?.id)  }">
             <div class="row">
@@ -23,8 +22,8 @@
                             <g:hiddenField name="id" value="${questionInstance?.id}" />
                             <g:hiddenField name="idCommunity" value="${Community.findByQuestion(questionInstance.id).get().id}" />
                             <g:hiddenField name="idUser" value="${session?.user?.id }" />
-                            <g:link class="edit btn btn-warning" action="edit" id="${questionInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
-                            <g:actionSubmit class="delete btn btn-danger" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
+                            <g:link class="edit btn " action="edit" id="${questionInstance?.id}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
+                            <g:actionSubmit class="delete btn" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');" />
                         </fieldset>
                     </g:form>
                 </div>
@@ -32,20 +31,30 @@
             </g:if>
 
 			<g:if test="${flash.message}">
-			<div class="message" role="status">${flash.message}</div>
+			    <div class="message" role="status">${flash.message}</div>
 			</g:if>
 
             <br/>
 
             <div class="row">
                 <div class="span12">
-                    <div class="well well-large">
-                        <g:if test="${questionInstance?.content}">
-                            <h3><g:message code="question.content.label" default=" " />
-                                <g:fieldValue bean="${questionInstance}" field="content"/></h3>
-                        </g:if>
+
+                    <div class="page-header">
+                        <h2><small>Question</small></h2>
+                        <h1>
+                            <g:if test="${questionInstance?.content}">
+                                &nbsp; &nbsp;<g:fieldValue bean="${questionInstance}" field="content"/>
+                            </g:if>
+
+                        </h1>
                     </div>
                 </div>
+            </div>
+
+
+            <div class="alert alert-info">
+                <h4>Soyez le premier à répondre à cette question !</h4>
+                Et gagner plus de points pour booster votre réputation dans la communauté.
             </div>
 
 

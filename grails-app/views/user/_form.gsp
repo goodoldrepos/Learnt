@@ -26,11 +26,5 @@
 	<g:field type="password" name="password" maxlength="15" required="" value="${userInstance?.password}"/>
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: userInstance, field: 'subscriptions', 'error')} ">
-	<label for="subscriptions">
-		<g:message code="user.subscriptions.label" default="Subscriptions" />
-		
-	</label>
-	<g:select name="subscriptions" from="${com.braksa.Community.list()}" multiple="multiple" optionKey="id" size="5" value="${userInstance?.subscriptions*.id}" class="many-to-many"/>
-</div>
+
 

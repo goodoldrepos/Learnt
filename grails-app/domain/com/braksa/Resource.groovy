@@ -13,5 +13,8 @@ class Resource {
 
     static constraints = {
         type inList: ["Vidéo", "Lien", "Livre"]
+        title blank: false
+        link blank: false
+
     }
 }
