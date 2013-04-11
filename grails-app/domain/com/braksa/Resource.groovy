@@ -5,6 +5,7 @@ class Resource {
 	String title
 	String link 
 	String type
+    Integer niveau
     Date dateCreated
     Date lastUpdated
 	
@@ -15,6 +16,6 @@ class Resource {
         type inList: ["Vidéo", "Lien", "Livre"]
         title blank: false
         link blank: false
-
+        niveau inList: [1,2,3]
     }
 }

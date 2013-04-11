@@ -32,6 +32,33 @@
 				</li>
 				</g:if>
 			
+				<g:if test="${resourceInstance?.title}">
+				<li class="fieldcontain">
+					<span id="title-label" class="property-label"><g:message code="resource.title.label" default="Title" /></span>
+					
+						<span class="property-value" aria-labelledby="title-label"><g:fieldValue bean="${resourceInstance}" field="title"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${resourceInstance?.link}">
+				<li class="fieldcontain">
+					<span id="link-label" class="property-label"><g:message code="resource.link.label" default="Link" /></span>
+					
+						<span class="property-value" aria-labelledby="link-label"><g:fieldValue bean="${resourceInstance}" field="link"/></span>
+					
+				</li>
+				</g:if>
+			
+				<g:if test="${resourceInstance?.niveau}">
+				<li class="fieldcontain">
+					<span id="niveau-label" class="property-label"><g:message code="resource.niveau.label" default="Niveau" /></span>
+					
+						<span class="property-value" aria-labelledby="niveau-label"><g:fieldValue bean="${resourceInstance}" field="niveau"/></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${resourceInstance?.dateCreated}">
 				<li class="fieldcontain">
 					<span id="dateCreated-label" class="property-label"><g:message code="resource.dateCreated.label" default="Date Created" /></span>
@@ -50,20 +77,13 @@
 				</li>
 				</g:if>
 			
-				<g:if test="${resourceInstance?.link}">
+				<g:if test="${resourceInstance?.upvotes}">
 				<li class="fieldcontain">
-					<span id="link-label" class="property-label"><g:message code="resource.link.label" default="Link" /></span>
+					<span id="upvotes-label" class="property-label"><g:message code="resource.upvotes.label" default="Upvotes" /></span>
 					
-						<span class="property-value" aria-labelledby="link-label"><g:fieldValue bean="${resourceInstance}" field="link"/></span>
-					
-				</li>
-				</g:if>
-			
-				<g:if test="${resourceInstance?.title}">
-				<li class="fieldcontain">
-					<span id="title-label" class="property-label"><g:message code="resource.title.label" default="Title" /></span>
-					
-						<span class="property-value" aria-labelledby="title-label"><g:fieldValue bean="${resourceInstance}" field="title"/></span>
+						<g:each in="${resourceInstance.upvotes}" var="u">
+						<span class="property-value" aria-labelledby="upvotes-label"><g:link controller="upvote" action="show" id="${u.id}">${u?.encodeAsHTML()}</g:link></span>
+						</g:each>
 					
 				</li>
 				</g:if>

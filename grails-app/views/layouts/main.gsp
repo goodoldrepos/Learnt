@@ -13,7 +13,6 @@
 		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
 		<link rel="apple-touch-icon" href="${resource(dir: 'images', file: 'apple-touch-icon.png')}">
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap.css')}" type="text/css">
-        <link rel="stylesheet" href="${resource(dir: 'css', file: 'flat-ui.css')}" type="text/css">
 
         <g:layoutHead/>
 		<r:layoutResources />
@@ -28,49 +27,65 @@
 		});
 		</script>
 		<br/>
-		<div class="navbar navbar-inverse ">
+		<div class="navbar">
   			<div class="navbar-inner">
-
+                  <a class="brand" href="#">learntX</a>
     			<ul class="nav ">
-      				<li><g:link controller="pages" action="index" >Accueil</g:link></li>
+      				<li><g:link controller="pages" action="index" ><i class="icon-home"></i></g:link></li>
       				<g:if test="${session?.user != null }">
-                          <li><g:link controller="user" action="show" id="${session?.user?.id }" >Profil</g:link></li>
-                          <li><g:link controller="pages" action="index" id="${session?.user?.id }" >Communautés</g:link></li>
+                          <li><g:link controller="user" action="show" id="${session?.user?.id }" ><i class="icon-user"></i></g:link></li>
+                          <li><g:link controller="pages" action="index" id="${session?.user?.id }" ><i class="icon-th"></i></g:link></li>
                       </g:if>
       				<g:else>
       					<li><g:link controller="user" action="create" >S'inscrire</g:link></li>
       				</g:else>
 
-    			</ul>
-                <ul class="nav pull-right">
-                    <g:if test="${session?.user?.role == 'admin' }">
-                        <li>
-                            <a href="#">
-                                Administration <b class="caret"></b>
-                                <span class="navbar-unread">1</span>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="#">Utilisateurs</a>
-                                    <ul>
-                                        <li><g:link controller="user" action="list" >Liste des utilisateurs</g:link></li>
-                                    </ul> <!-- /Sub menu -->
-                                </li>
-                                <li>
-                                    <a href="#">Communauté</a>
-                                    <ul>
-                                        <li><g:link controller="community" action="create" >Nouvelle Communauté</g:link></li>
-                                        <li><g:link controller="community" action="list" >Liste des Communautés</g:link></li>
-                                    </ul> <!-- /Sub menu -->
-                                </li>
-                            </ul> <!-- /Sub menu -->
-                        </li>
-                    </g:if>
 
-                    <li><g:loginControl/></li>
+
+
+
+
+
+
+
+
                 </ul>
+                      <ul class="nav pull-right">
 
-  			</div>
+                      <g:if test="${session?.user?.role == 'admin' }">
+
+
+                          <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Administration <b class="caret"></b></b></a>
+                              <ul class="dropdown-menu">
+                                  <li class="dropdown-submenu">
+                                      <a tabindex="-1" href="#">Communauté</a>
+                                      <ul class="dropdown-menu pull-right">
+                                          <li><g:link controller="community" action="create" >Nouvelle Communauté</g:link></li>
+                                          <li><g:link controller="community" action="list" >Liste des Communautés</g:link></li>
+                                      </ul>
+                                  </li>
+                                  <li class="dropdown-submenu">
+                                      <a tabindex="-1" href="#">Utilisateurs</a>
+                                      <ul class="dropdown-menu">
+                                          <li><g:link controller="user" action="list" >Liste des utilisateurs</g:link></li>
+                                      </ul>
+                                  </li>
+
+                              </ul>
+                          </li>
+                          <li class="divider-vertical"></li>
+                        </g:if>
+                          <li><g:loginControl/></li>
+                      </ul>
+
+
+
+
+
+
+
+              </div>
 		</div>
 		
 		<g:layoutBody/>

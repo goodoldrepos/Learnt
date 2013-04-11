@@ -84,7 +84,7 @@ class CommunityController {
             return
         }
 
-        flash.message = message(code: 'default.updated.message', args: [message(code: 'community.label', default: 'Community'), communityInstance.id])
+        flash.message = message(code: 'default.updated.message', args:[communityInstance.name])
         redirect(action: "show", id: communityInstance.id)
     }
 

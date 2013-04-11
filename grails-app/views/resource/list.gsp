@@ -26,13 +26,15 @@
 					
 						<g:sortableColumn property="type" title="${message(code: 'resource.type.label', default: 'Type')}" />
 					
-						<g:sortableColumn property="dateCreated" title="${message(code: 'resource.dateCreated.label', default: 'Date Created')}" />
-					
-						<g:sortableColumn property="lastUpdated" title="${message(code: 'resource.lastUpdated.label', default: 'Last Updated')}" />
+						<g:sortableColumn property="title" title="${message(code: 'resource.title.label', default: 'Title')}" />
 					
 						<g:sortableColumn property="link" title="${message(code: 'resource.link.label', default: 'Link')}" />
 					
-						<g:sortableColumn property="title" title="${message(code: 'resource.title.label', default: 'Title')}" />
+						<g:sortableColumn property="niveau" title="${message(code: 'resource.niveau.label', default: 'Niveau')}" />
+					
+						<g:sortableColumn property="dateCreated" title="${message(code: 'resource.dateCreated.label', default: 'Date Created')}" />
+					
+						<g:sortableColumn property="lastUpdated" title="${message(code: 'resource.lastUpdated.label', default: 'Last Updated')}" />
 					
 					</tr>
 				</thead>
@@ -42,13 +44,15 @@
 					
 						<td><g:link action="show" id="${resourceInstance.id}">${fieldValue(bean: resourceInstance, field: "type")}</g:link></td>
 					
-						<td><g:formatDate date="${resourceInstance.dateCreated}" /></td>
-					
-						<td><g:formatDate date="${resourceInstance.lastUpdated}" /></td>
+						<td>${fieldValue(bean: resourceInstance, field: "title")}</td>
 					
 						<td>${fieldValue(bean: resourceInstance, field: "link")}</td>
 					
-						<td>${fieldValue(bean: resourceInstance, field: "title")}</td>
+						<td>${fieldValue(bean: resourceInstance, field: "niveau")}</td>
+					
+						<td><g:formatDate date="${resourceInstance.dateCreated}" /></td>
+					
+						<td><g:formatDate date="${resourceInstance.lastUpdated}" /></td>
 					
 					</tr>
 				</g:each>

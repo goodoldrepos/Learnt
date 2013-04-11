@@ -1,9 +1,20 @@
 <html>
   <head>
     <meta name="layout" content="main" />
-    <title>Login</title>         
+    <title>Login</title>
+      <style type="text/css">
+          .tile{
+              text-align: center;
+              background-color: #ecf0f5;
+              border-radius: 6px;
+              padding: 14px;
+          }
+      </style>
   </head>
   <body>
+
+
+
 
         <div class="row">
             <div class="span12">
@@ -25,10 +36,12 @@
                 <div class="row">
             </g:if>
             <div class="span3">
-                <div class="tile">
-                    <h3 class="tile-title">${community.name}</h3>
-                    <p>Catégorie: ${community.category}</p>
-                    <g:link controller="community" action="show" id="${community.id}" class="btn btn-large btn-primary btn-block" >Voir</g:link>
+                <div class="thumbnail tile">
+                    <div class="caption">
+                        <h3 class="tile-title">${community.name}</h3>
+                        <p>Catégorie: ${community.category}</p>
+                        <p><g:link controller="community" action="show" id="${community.id}" class="btn btn-large btn-primary btn-block" >Rejoindre</g:link></p>
+                    </div>
                 </div>
             </div>
 

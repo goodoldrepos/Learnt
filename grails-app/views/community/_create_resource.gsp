@@ -12,5 +12,13 @@
     <g:select name="type" class="span3" from="${resourceInstance.constraints.type.inList}" value="${resourceInstance?.type}" valueMessagePrefix="resource.type" noSelection="['': '']"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: resourceInstance, field: 'niveau', 'error')} required">
+    <label for="niveau">
+        <g:message code="resource.niveau.label" default="Niveau" />
+        <span class="required-indicator">*</span>
+    </label>
+    <g:select name="niveau" from="${resourceInstance.constraints.niveau.inList}" required="" value="${fieldValue(bean: resourceInstance, field: 'niveau')}" valueMessagePrefix="resource.niveau"/>
+</div>
+
 
 

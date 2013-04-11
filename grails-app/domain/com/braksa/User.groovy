@@ -38,6 +38,12 @@ class User {
                     eq 'id', questionId
                 }
         }
+        findByResource {
+            resourceId ->
+                resources {
+                    eq 'id', resourceId
+                }
+        }
     }
 	
     String toString(){
