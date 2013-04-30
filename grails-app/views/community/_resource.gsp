@@ -1,5 +1,6 @@
 <%@ page import="com.braksa.Resource" %>
 <%@ page import="com.braksa.User" %>
+<%@  page import="grails.converters.*" %>
 
 
 <style type="text/css">
@@ -17,6 +18,23 @@
 </style>
 
 <div class="thumbnail tile">
+    <%
+        if(resourceInstance.type == "Livre"){
+
+            def str = "https://www.googleapis.com/books/v1/volumes?key=AIzaSyCqHK7Rp-d792JGjNTGVrMKTq55TaIOiXk&q=" + java.net.URLEncoder.encode(resourceInstance.title)
+
+            def data = str.toURL().text
+            //println str
+            def userJson = JSON.parse(data)
+            if(userJson.items.get(0).volumeInfo.imageLinks?.thumbnail){
+                println "<img src='" + userJson.items.get(0).volumeInfo.imageLinks.thumbnail + "'/>"
+            }else{
+                def thebook =  userJson.items.findAll{ w -> w.volumeInfo.title.toLowerCase().trim() == resourceInstance.title.toLowerCase().trim() }
+                println "<img src='" + thebook.volumeInfo.imageLinks.thumbnail.get(0) + "'/>"
+            }
+
+        }
+    %>
     <div class="caption">
         <h4 class="tile-title">
             <a  href="${fieldValue(bean: resourceInstance, field: "link")}" target="_blank">${fieldValue(bean: resourceInstance, field: "title")}</a>
@@ -37,32 +55,30 @@
         %>
         <g:if test="${didntVote == true}">
             <div class="like-button">
-                <g:if test="${User.findByResource(resourceInstance.id)}" >
+                <g:link controller="resource" action="upvote" id="${resourceInstance.id}">
+                    <span class="btn btn-success">
+                        <i class="icon-thumbs-up icon-white"></i> ${resourceInstance.upvotes.size()}
+                    </span>
+                </g:link>
+                <g:if test="${User.findByResource(resourceInstance.id).list().get(0).id == session?.user?.id}" >
                     <span class="btn">
                         <i class="icon-edit"></i>
                     </span>
                     <span class="btn">
-                        <i class="icon-remove"></i>
+                        <i class="icon-trash"></i>
                     </span>
                 </g:if>
-                <g:link controller="resource" action="upvote" id="${resourceInstance.id}">
-
-                    <span class="btn">
-                        <i class="icon-thumbs-up"></i> ${resourceInstance.upvotes.size()}
-                    </span>
-
-                </g:link>
             </div>
         </g:if>
         <g:else>
         <br/>
-            <div class=" like-button">
-                <g:if test="">
+            <div class="like-button">
+                <g:if test="${User.findByResource(resourceInstance.id).list().get(0).id == session?.user?.id}">
                     <span class="btn">
                         <i class="icon-edit"></i>
                     </span>
                     <span class="btn">
-                        <i class="icon-remove"></i>
+                        <i class="icon-trash"></i>
                     </span>
                 </g:if>
 

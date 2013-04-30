@@ -15,7 +15,6 @@ class Answer {
 
     static mapping = {
         sort dateCreated: 'asc'
-
     }
 
 }

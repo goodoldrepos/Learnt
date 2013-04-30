@@ -38,15 +38,13 @@
 
             <div class="row">
                 <div class="span12">
-
                     <div class="page-header">
-                        <h2><small>Question</small></h2>
-                        <h1>
+                        <h2>
                             <g:if test="${questionInstance?.content}">
-                                &nbsp; &nbsp;<g:fieldValue bean="${questionInstance}" field="content"/>
+                                <g:fieldValue bean="${questionInstance}" field="content"/>
                             </g:if>
 
-                        </h1>
+                        </h2>
                     </div>
                 </div>
             </div>
@@ -64,30 +62,27 @@
                     <div class="span1">
                         <span class="pull-right">
                             <br/>
-                            <span class="badge">
-                                ${answerInstance.upvotes.size()}pts
-                            </span>
-                        </span>
-                    </div>
-                    <div class="span11">
-                        <div class="well">
-                            <g:set var="u" value="${User.findByAnswer(answerInstance.id).list().get(0)}" />
-                            <g:link controller="user" action="show" id="${u.id}" >(${u.name})</g:link> ${fieldValue(bean: answerInstance, field: "content")}
                             <%
                                 def cond = true
                                 List userUpvotes = User.get(session?.user?.id).upvotes.toList()
                                 List answerUpvotes = answerInstance.upvotes.toList()
                                 for(upvote in userUpvotes){
-                                   if(answerUpvotes.contains(upvote)) cond = false
+                                    if(answerUpvotes.contains(upvote)) cond = false
                                 }
                             %>
                             <g:if test="${cond == true}">
-                                <g:link controller="answer" action="upvote" id="${answerInstance.id}" class="btn btn-primary pull-right"><i class="icon-thumbs-up icon-white"></i>                                </g:link>
+                                <g:link controller="answer" action="upvote" id="${answerInstance.id}" class="btn btn-primary pull-right"><i class="icon-thumbs-up icon-white"></i></g:link>
                             </g:if>
                             <g:else>
-                                <input type="button" class="btn btn-primary pull-right disabled" value="+" />
+                                <input type="button" class="btn btn-inverse pull-right disabled" value=" ${answerInstance.upvotes.size()}pts" />
                             </g:else>
-
+                        </span>
+                    </div>
+                    <div class="span11">
+                        <div class="well">
+                            <g:set var="u" value="${User.findByAnswer(answerInstance.id).list().get(0)}" />
+                             ${fieldValue(bean: answerInstance, field: "content")}
+                            <span class="pull-right"><g:link controller="user" action="show" id="${u.id}" >${u.name}</g:link></span>
                         </div>
                     </div>
                 </div>

@@ -11,12 +11,12 @@
         <div class="row">
             <div class="span12">
                 <div class=" page-header">
-                    <h1>
-                        <g:img file="illustrations/share.png" width="50" /> &nbsp;#${communityInstance?.name}
+                    <h3>
+                        &nbsp;${communityInstance?.name}
                         <div class="pull-right">
                             <g:if test="${session?.user?.follow(communityInstance.id)}">
                                 <g:link controller="community" action="unsubscribe" id="${communityInstance.id}" >
-                                    <input type="button" class="btn btn-small btn-inverse" value="Quitter" />
+                                    <input type="button" class="btn btn-small btn-inverse" value="Se désabonner" />
                                 </g:link>
                             </g:if>
                             <g:else>
@@ -25,7 +25,7 @@
                                 </g:link>
                             </g:else>
                         </div>
-                    </h1>
+                    </h3>
                 </div>
             </div>
         </div>
@@ -66,8 +66,8 @@
                         <h3>Discussions récentes</h3>
                     </p>
                     <p class="pull-right">
-                        <a href="#" class="add-question btn btn-primary btn-mini">
-                            <i class="icon-plus icon-white"></i> Poser une question
+                        <a href="#" class="add-question btn btn-mini">
+                            <i class="icon-plus"></i> Ajouter Question
                         </a>
                     </p>
                     <br/> <br/>
@@ -93,8 +93,8 @@
                         </ul>
                         <div class="tab-content">
                             <p class="pull-right">
-                                <a href="#" class="add-resource btn btn-mini btn-primary ">
-                                    <i class="icon-plus icon-white"></i> Ajouter
+                                <a href="#" class="add-resource btn btn-mini">
+                                    <i class="icon-file"></i> Ajouter Ressource
                                 </a>
                             </p>
 

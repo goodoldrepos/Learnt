@@ -98,25 +98,39 @@ class QuestionController {
     def delete(Long id) {
         def questionInstance = Question.get(id)
         println "User_id : " + params.idCommunity
-        def c = Community.get(params.idCommunity)
-        def u = User.get(params.idUser)
-        c.questions.remove(questionInstance);  c.save(flush: true)
-        u.questions.remove(questionInstance);  u.save(flush: true)
+        def community = Community.get(params.idCommunity)
+        def user = User.get(params.idUser)
+        community.questions.remove(questionInstance); //remove question from community
+        community.save(flush: true)
+        user.questions.remove(questionInstance); //remove question from user
+        user.save(flush: true)
+
+        println 'removing answers by users'
+        for(answer in questionInstance.answers){
+            def someUser = User.findByAnswer(answer.id).list().get(0)
+            someUser.answers.remove(answer)
+        }
+        println 'answers removed'
 
         if (!questionInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'question.label', default: 'Question'), id])
-            redirect(controller: "community", action: "show", id: c.id)
+            redirect(controller: "community", action: "show", id: community.id)
             return
         }
 
+        println "trying to remove the question"
+
         try {
-            questionInstance.delete(flush: true)
-            flash.message = message(code: 'default.deleted.message', args: [message(code: 'question.label', default: 'Question'), id])
-            redirect(controller: "community", action: "show", id: c.id)
+            println "Question removed (before)"
+            Question.get(questionInstance.id).delete(flush: true)
+            println "Question removed (after)"
+            flash.message = message(code: 'default.deleted.message', args: [message(code: 'question.label', default: 'Question deleted'), id])
+            redirect(controller: "community", action: "show", id: community.id)
         }
         catch (DataIntegrityViolationException e) {
-            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'question.label', default: 'Question'), id])
-            redirect(action: "show", id: id)
+            println("Exception happened")
+            flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'question.label', default: 'Exception'), id])
+            redirect(controller: "community", action: "show", id: c.id)
         }
     }
 }

@@ -13,4 +13,9 @@ class Question {
     static constraints = {
         content(blank: false)
     }
+
+    static mapping = {
+        answers cascade: 'all-delete-orphan'
+        upvotes cascade: 'all-delete-orphan'
+    }
 }
