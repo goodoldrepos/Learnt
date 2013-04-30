@@ -52,11 +52,12 @@
             </div>
 
 
-            <div class="alert alert-info">
-                <h4>Soyez le premier à répondre à cette question !</h4>
-                Et gagner plus de points pour booster votre réputation dans la communauté.
-            </div>
-
+            <g:if test="${answerInstanceTotal == 0}">
+                <div class="alert alert-info">
+                    <h4>Soyez le premier à répondre à cette question !</h4>
+                    Et gagner plus de points pour booster votre réputation dans la communauté.
+                </div>
+            </g:if>
 
             <g:each in="${answerInstanceList.asList().sort{it.upvotes.size()}.reverse()}" status="i" var="answerInstance">
                 <div class="row">
@@ -81,7 +82,7 @@
                                 }
                             %>
                             <g:if test="${cond == true}">
-                                <g:link controller="answer" action="upvote" id="${answerInstance.id}" class="btn btn-primary pull-right">+</g:link>
+                                <g:link controller="answer" action="upvote" id="${answerInstance.id}" class="btn btn-primary pull-right"><i class="icon-thumbs-up icon-white"></i>                                </g:link>
                             </g:if>
                             <g:else>
                                 <input type="button" class="btn btn-primary pull-right disabled" value="+" />

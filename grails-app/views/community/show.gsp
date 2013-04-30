@@ -53,7 +53,7 @@
             <div class="navigation">
                 <ul class="nav nav-pills nav-stacked menu">
                     <li class="active"><a href="#pane1" data-toggle="tab"><i class="icon-comment"></i> Discussions</a></li>
-                    <li><a href="#pane2" data-toggle="tab"><i class="icon-book"></i> Bibliothéques</a></li>
+                    <li><a href="#pane2" data-toggle="tab"><i class="icon-book"></i> Librairie</a></li>
                 </ul>
             </div>
         </div>
