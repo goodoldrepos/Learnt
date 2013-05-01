@@ -71,6 +71,9 @@ environments {
     }
 }
 
+grails.plugin.cloudfoundry.username = "qmathematical@gmail.com"
+grails.plugin.cloudfoundry.password = "FRhcWsPV"
+
 // log4j configuration
 log4j = {
     // Example of changing the log pattern for the default console appender:
